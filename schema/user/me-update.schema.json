@@ -1,0 +1,35 @@
+{
+  "$async": true,
+  "type": "object",
+  "additionalProperties": false,
+  "required": [],
+  "properties": {
+    "first_name": {
+      "type": ["string", "null"]
+    },
+    "last_name": {
+      "type": ["string", "null"]
+    },
+    "title": {
+      "type": ["string", "null"]
+    },
+    "email": {
+      "type": ["string", "null"],
+      "email": true
+    },
+    "comment": {
+      "type": ["string", "null"]
+    },
+    "information": {
+      "type": ["string", "null"]
+    },
+    "phone_number": {
+      "type": ["string", "null"],
+      "phone_number": true
+    },
+    "mobile_number": {
+      "type": ["string", "null"],
+      "phone_number": true
+    }
+  }
+}
