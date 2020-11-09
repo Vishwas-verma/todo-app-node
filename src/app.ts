@@ -1,4 +1,5 @@
 import express from "express";
+import { Request, Response } from "express";
 import compression from "compression";
 import { apiRoutes } from "./routes/api.route";
 import { snsHeaderMiddleware } from "@devslane/sns-service-node";
@@ -85,6 +86,14 @@ export class Application {
     }
 
     private initRoutes(): void {
+        this.APP.use("/public", express.static("public", {maxAge: 31557600000}));
+
+        this.APP.get("/test", (req: Request, res: Response) => {
+            return res.json({
+                "success": true
+            });
+        });
+
         this.APP.use(apiRoutes);
     }
 
