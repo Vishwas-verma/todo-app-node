@@ -1,6 +1,5 @@
 import { ValidatorService } from "@devslane/validator-service-node";
 import logger from "../../util/logger.util";
-import { phoneNumberKeyword } from "../../validators/keywords/phone-number.keyword";
 import { APP_IDENTIFIER } from "../../util/secrets.util";
 
 class ValidatorFactory {
@@ -14,9 +13,9 @@ class ValidatorFactory {
         });
 
         // Add Custom Keywords here...
-        this._instance.registerKeywords([
-            phoneNumberKeyword,
-        ]);
+        // this._instance.registerKeywords([
+        //     phoneNumberKeyword,
+        // ]);
         return this._instance;
     }
 }

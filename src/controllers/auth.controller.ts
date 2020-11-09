@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { BaseController } from "./base.controller";
 import { UnprocessableEntityException } from "../exceptions/commons/unprocessable-entity.exception";
 import { userService } from "../services/entities/user.service";
 import { cryptService } from "../services/factories/crypt.service";
@@ -10,7 +9,7 @@ import { AuthLoginDto } from "../dtos/auth/auth-login.dto";
 import { UserAlreadyExistsException } from "../exceptions/user/user-already-exists.exception";
 import { UserCreateValidator } from "../validators/user/user-create.validator";
 
-export class AuthController extends BaseController {
+export class AuthController  {
   static async me(req: Request, res: Response) {
     return res.json({
       user: await new UserTransformer().transform(req.user)

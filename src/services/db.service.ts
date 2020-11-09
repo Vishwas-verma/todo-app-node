@@ -8,10 +8,10 @@ import {
   ENV_MYSQL_USER
 } from "../util/secrets.util";
 import logger from "../util/logger.util";
-import { QueryOptions } from "sequelize";
 import { User } from "../models/user.model";
 import { ENVIRONMENT_PRODUCTION } from "../util/constants.util";
 import { Todo } from "../models/todo.model";
+import { QueryOptions } from "winston";
 
 class DBService {
   private _sequelize: Sequelize;
@@ -38,6 +38,7 @@ class DBService {
   }
 
   async rawQuery(sql: string | { query: string, values: any[] }, options?: QueryOptions): Promise<any> {
+    // @ts-ignore
     return this._sequelize.query(sql, options);
   }
 }

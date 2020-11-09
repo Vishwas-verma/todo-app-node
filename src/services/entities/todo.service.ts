@@ -1,5 +1,4 @@
 import logger from "../../util/logger.util";
-import { Transaction } from "sequelize";
 import { Todo } from "../../models/todo.model";
 import { TodoUpdateDto } from "../../dtos/todo/todo-update.dto";
 import { TodoCreateDto } from "../../dtos/todo/todo-create.dto";
@@ -27,12 +26,10 @@ class TodoService {
     return Todo.findAll();
   }
 
-  async create(data: TodoCreateDto, userId?: number, transaction?: Transaction): Promise<Todo> {
+  async create(data: TodoCreateDto, userId?: number): Promise<Todo> {
     return await Todo.create({
       ...data,
       created_by: userId,
-    }, {
-      transaction
     });
   }
 

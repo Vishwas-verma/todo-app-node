@@ -11,10 +11,6 @@ const router = express.Router();
 
 router.post("/test", errorHandler(UserController.test));
 
-router.route("/sign-up")
-    .post(errorHandler(UserController.signUp))
-    .all(methodNotFoundHandler);
-
 router.route("/login")
     .post(errorHandler(AuthController.login))
     .all(methodNotFoundHandler);
