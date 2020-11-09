@@ -25,6 +25,7 @@ export class Application {
 
     private readonly ALLOWED_ORIGINS = [
         "http://localhost:3000", // Default Angular dev url.
+        "http://localhost:4200", // Default Angular dev url.
         // TODO Add dashboard url here.
     ];
 
