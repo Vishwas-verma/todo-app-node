@@ -1,9 +1,18 @@
 import * as winston from "winston";
+import { ENV_SENTRY_DSN, APP_ENV } from "./secrets.util";
 import appRoot from "app-root-path";
-import { ENV_ENVIRONMENT } from "./secrets.util";
+import Sentry from "winston-sentry-log";
+
 
 const logger = winston.createLogger({
-    format: winston.format.json(),
+    format: winston.format.combine(
+      winston.format.colorize(),
+      winston.format.timestamp({
+        format: "YYYY-MM-DD HH:mm:ss"
+      }),
+      winston.format.simple(),
+      winston.format.printf(info => `${info.level} ${info.timestamp}: ${info.message}`)
+    ),
     transports: [
         new winston.transports.File({
             format: winston.format.json(),
@@ -14,17 +23,20 @@ const logger = winston.createLogger({
             format: winston.format.json(),
             level: "error",
             filename: `${appRoot}/logs/error.log`,
-        })
+        }),
     ]
 });
 
-if (ENV_ENVIRONMENT !== "production") {
+if (APP_ENV !== "production") {
     logger.add(new winston.transports.Console({
-        format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.simple()
-        ),
         level: "silly"
+    }));
+} else {
+    logger.add(new Sentry({
+        config: {
+            dsn: ENV_SENTRY_DSN
+        },
+        level: "info"
     }));
 }
 

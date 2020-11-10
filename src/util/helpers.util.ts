@@ -2,6 +2,8 @@ import { Dictionary } from "async";
 import uuidv4 from "uuid";
 import { isUndefined } from "util";
 import * as _ from "lodash";
+import { HttpException } from "../exceptions/commons/http.exception";
+import { Response } from "express";
 
 export class Helpers {
     public static generateRandomString(length = 8, options: {
@@ -62,6 +64,19 @@ export class Helpers {
     public static generateUUIDV4(): string {
         return uuidv4();
     }
+
+
+    public static handleError(res: Response, exception: HttpException): void {
+        res.statusCode = exception.statusCode;
+        res.json({
+            code   : exception.errorCode,
+            message: exception.message,
+            errors : exception.errors
+        });
+
+        return;
+    }
+
 
     public static sanitizeString(subject: string): string {
         const asciiPart = subject.replace(/[^\x00-\x7F]/g, "");
