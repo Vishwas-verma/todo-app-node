@@ -99,7 +99,7 @@ export class Application {
 
     this.APP.get("/test", (req: Request, res: Response) => {
       return res.json({
-        "success": true
+        "success": "ROUTE53"
       });
     });
 
