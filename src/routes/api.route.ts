@@ -9,10 +9,8 @@ import { TodoController } from "../controllers/todo.controller";
 
 const router = express.Router();
 
-router.post("/test", errorHandler(UserController.test));
-
-router.route("/login")
-    .post(errorHandler(AuthController.login))
+router.route("/authenticate")
+    .post(errorHandler(AuthController.authenticate))
     .all(methodNotFoundHandler);
 
 router.get("/me", userMiddleware, errorHandler(AuthController.me));

@@ -8,7 +8,6 @@ class JwtFactory {
         return JwtService.create({
             jwtIssuer: APP_IDENTIFIER,
             jwtSecret: ENV_JWT_SECRET,
-
             expiryTimeMS: 30 * 24 * 60 * 60 * 1000 // 7 Days in ms
         });
     }

@@ -26,14 +26,15 @@ class TodoService {
     return Todo.findAll();
   }
 
-  async create(data: TodoCreateDto, userId?: number): Promise<Todo> {
-    return await Todo.create({
+  async create(data: TodoCreateDto, userId: number): Promise<Todo> {
+    console.log(userId);
+    return  Todo.create({
       ...data,
       created_by: userId,
     });
   }
 
-  async update(todo: Todo, data: TodoUpdateDto, userId?: number): Promise<Todo> {
+  async update(todo: Todo, data: TodoUpdateDto, userId: number): Promise<Todo> {
     todo = await todo.update({
       ...data,
       updated_by: userId

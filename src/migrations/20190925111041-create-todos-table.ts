@@ -22,6 +22,15 @@ export = {
         type     : Sequelize.STRING,
         allowNull: true,
       },
+      created_by: {
+        type      : Sequelize.BIGINT,
+        allowNull : true,
+        references: {
+          model: "users",
+          key  : "id"
+        },
+        onDelete: "set null"
+      },
       createdAt  : {
         allowNull: false,
         type     : Sequelize.DATE

@@ -34,8 +34,8 @@ export class Todo extends Model<Todo> {
 
   @ForeignKey(() => User)
   @Column(DataType.BIGINT)
-  user_id: number;
+  created_by: number;
 
   @BelongsTo(() => User)
-  user: User;
+  creator: User;
 }

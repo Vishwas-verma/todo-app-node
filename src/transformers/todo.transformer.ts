@@ -6,7 +6,7 @@ export class TodoTransformer extends TransformerAbstract<Todo> {
   protected _map(todo: Todo): Dictionary<any> {
     return {
       id         : todo.id,
-      step_id    : todo.user_id,
+      created_by : todo.created_by,
       title      : todo.title,
       description: todo.description
     };

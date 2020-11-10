@@ -24,7 +24,7 @@ class DBService {
       database: ENV_MYSQL_DB,
       username: ENV_MYSQL_USER,
       password: ENV_MYSQL_PASSWORD,
-      logging : ENV_ENVIRONMENT !== ENVIRONMENT_PRODUCTION,
+      logging : false,
     });
 
     this._sequelize.addModels([
