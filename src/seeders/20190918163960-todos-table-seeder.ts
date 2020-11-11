@@ -1,21 +1,13 @@
 import { QueryInterface, SequelizeStatic } from "sequelize";
 import { dbService } from "../services/db.service";
-import { User } from "../models/user.model";
 import * as faker from "faker";
+import { User } from "../models/user.model";
+import { Todo } from "../models/todo.model";
 
 dbService; // Initialising Sequelize...
 
+const clients: any[] = [];
 
-const users: any[] = [
-  {
-    first_name: "Todo Pro",
-    last_name : "Admin",
-    email     : "admin@gmail.com",
-    password  : "secret",
-    createdAt : new Date(),
-    updatedAt : new Date(),
-  }
-];
 
 export = {
   /**
@@ -25,17 +17,17 @@ export = {
    * @param Sequelize
    */
   up: async (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-    for (let i = 0; i < 20; i++) {
-      users.push({
-        first_name: faker.name.firstName(0),
-        last_name : faker.name.lastName(0),
-        email     : faker.internet.email(),
-        password  : "secret",
-        createdAt : new Date(),
-        updatedAt : new Date(),
+    for (let i = 0; i < 10; i++) {
+      const users = await User.findAll();
+      clients.push({
+        title      : faker.lorem.text(),
+        description: faker.lorem.sentence(),
+        created_by : faker.random.arrayElement(users).id,
+        createdAt  : new Date(),
+        updatedAt  : new Date(),
       });
     }
-    return User.bulkCreate(users);
+    return Todo.bulkCreate(clients);
   },
 
   /**
@@ -45,6 +37,6 @@ export = {
    * @param Sequelize
    */
   down: async (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
-    return User.truncate();
+    return Todo.truncate();
   }
 };
