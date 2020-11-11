@@ -104,7 +104,7 @@ export class Application {
     });
 
 
-    this.APP.get("/test", errorHandler((req: express.Request, res: express.Response) => {
+    this.APP.get("/test/abc123", errorHandler((req: express.Request, res: express.Response) => {
       return res.json({
         "success": true
       });
